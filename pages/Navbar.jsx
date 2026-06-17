@@ -36,7 +36,7 @@ const Navbar = ({ user, setUser, cllg, setCllg }) => {
     //  Logout
     const handleLogout = () => {
         localStorage.removeItem("token");
-
+        setCllg("Select College")
         navigate("/");
     };
 
@@ -130,7 +130,7 @@ const Navbar = ({ user, setUser, cllg, setCllg }) => {
                     </div>
 
 
-                    {/* cart */}
+                    {/* post item */}
                     <div className="hidden md:flex  flex-col">
                         {user ? (
                             <button

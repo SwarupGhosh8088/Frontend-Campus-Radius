@@ -45,9 +45,25 @@ export default function Pagesearch() {
 
         <div className="max-w-7xl mx-auto px-4 py-8">
           {loading ? (
-            <p className="text-center mt-10 text-xl font-semibold">
-              Loading...
-            </p>
+
+
+
+
+            <div className="flex flex-wrap gap-4 justify-around">
+              {[...Array(8)].map((_, index) => (
+                <div
+                  key={index}
+                  className="h-[260px] w-[240px] bg-gray-300 rounded-2xl flex flex-col items-center p-3 gap-3 animate-pulse"
+                >
+                  <div className="h-[140px] w-[220px] bg-gray-400 rounded-2xl"></div>
+                  <div className="h-[32px] w-[200px] bg-gray-400 rounded-2xl"></div>
+                  <div className="h-[40px] w-[220px] bg-gray-400 rounded-2xl"></div>
+                </div>
+              ))}
+            </div>
+
+
+
           ) : items.length === 0 ? (
             <h1 className="text-xl  font-sans rounded-2xl p-3 mb-6">
 

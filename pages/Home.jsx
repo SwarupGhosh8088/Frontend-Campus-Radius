@@ -20,9 +20,37 @@ const Home = ({ user, cllg, setCllg }) => {
     const [loading, setLoading] = useState(true);
     const [current, setCurrent] = useState(0);
 
+
+
+
+
+
+
+
+
+
+
     const fetchItems = async () => {
         try {
             let res;
+
+            const start = Date.now();
+
+            const res1 = await axios.get(
+                `${import.meta.env.VITE_BACKEND_API}/item/`
+            );
+
+            console.log("Items:", res1.data.data?.length);
+            console.log("Total Time:", Date.now() - start, "ms");
+
+
+
+
+
+
+
+
+
             if (cllg === "All Colleges") {
                 res = await axios.get(
                     `${import.meta.env.VITE_BACKEND_API}/item/`
@@ -101,10 +129,10 @@ const Home = ({ user, cllg, setCllg }) => {
 
                 <div className=" md:hidden flex flex-wrap items-center mt-13 justify-center bg-white border border-mist-300 shadow-2xl shadow-purple-300 rounded-2xl p-3  gap-2  ">
                     {
-                        categories.map((item,index)=>(
+                        categories.map((item, index) => (
                             <div key={index}
-                             onClick={() => navigate(`/pagesearch/cat/${item.category.split(" ")[0]}`)}
-                             className=" flex flex-col  items-center  border border-mist-400 rounded-2xl p-2 ">
+                                onClick={() => navigate(`/pagesearch/cat/${item.category.split(" ")[0]}`)}
+                                className=" flex flex-col  items-center  border border-mist-400 rounded-2xl p-2 ">
                                 <img src={item.image} className="h-10  object-cover  w-8" alt="" />
 
                                 <p className=" text-center text-sm ">{item.category.split(" ")[0]}</p>
@@ -136,8 +164,21 @@ const Home = ({ user, cllg, setCllg }) => {
 
 
                 {/* LOADING */}
+
                 {loading ? (
-                    <p className="text-center mt-10">Loading...</p>
+
+                    <div  className=" hidden md:flex flex-wrap gap-4 justify-around">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="  h-20  md:h-[260px] md:w-[240px] bg-gray-300 rounded-2xl flex flex-col items-center p-3 gap-3 animate-pulse"
+                            >
+                                <div className="h-[140px] w-[220px] bg-gray-400 rounded-2xl"></div>
+                                <div className="h-[32px] w-[200px] bg-gray-400 rounded-2xl"></div>
+                                <div className="h-[40px] w-[220px] bg-gray-400 rounded-2xl"></div>
+                            </div>
+                        ))}
+                    </div>
                 ) : (
 
                     <div className=" hidden h-full rounded-2xl bg-white shadow-2xl shadow-indigo-300 md:border border-mist-300 w-full md:flex flex-col p-3 ">
@@ -162,6 +203,7 @@ const Home = ({ user, cllg, setCllg }) => {
                                     <div className="w-full border  border-mist-400 h-44 bg-white rounded-xl overflow-hidden relative">
 
                                         <img
+                                            loading="lazy"
                                             src={item.images?.[0] || "https://www.trschools.com/templates/imgs/20162309_100925_1.png"}
                                             className="w-full h-full object-contain transition duration-300 hover:scale-105 hover:blur-[0.5px]"
                                             alt={item.name}
@@ -240,9 +282,20 @@ const Home = ({ user, cllg, setCllg }) => {
                 {/* mobile responisve */}
 
 
-                 {/* LOADING */}
+                {/* LOADING */}
                 {loading ? (
-                    <p className=" md:hidden text-center mt-10">Loading...</p>
+                       <div className="flex flex-wrap gap-4 justify-around">
+                        {[...Array(8)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="  h-50  w-35  bg-gray-300 rounded-2xl flex flex-col items-center p-3 gap-3 animate-pulse"
+                            >
+                                <div className="h-20 w-31 bg-gray-400 rounded-2xl"></div>
+                                <div className="h-8 w-28 bg-gray-400 rounded-2xl"></div>
+                                <div className="h-8 w-30 bg-gray-400 rounded-2xl"></div>
+                            </div>
+                        ))}
+                    </div>
                 ) : (
 
                     <div className=" md:hidden bg-gray-100 h-full rounded-2xl p-3 ">
@@ -305,7 +358,7 @@ const Home = ({ user, cllg, setCllg }) => {
                                                 Rent it: ₹ {(item.pricePerMonth / 30).toFixed(2)}/day
                                             </p>
 
-                                              <p className="text-sm font text-grey-500 ">
+                                            <p className="text-sm font text-grey-500 ">
                                                 Buy: ₹ {item.sellingPrice}
                                             </p>
 
