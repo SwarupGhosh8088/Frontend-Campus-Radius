@@ -167,11 +167,11 @@ const Home = ({ user, cllg, setCllg }) => {
 
                 {loading ? (
 
-                    <div  className=" hidden md:flex flex-wrap gap-4 justify-around">
+                    <div  className=" hidden md:flex flex-wrap gap-5 justify-around">
                         {[...Array(8)].map((_, index) => (
                             <div
                                 key={index}
-                                className="  h-20  md:h-[260px] md:w-[240px] bg-gray-300 rounded-2xl flex flex-col items-center p-3 gap-3 animate-pulse"
+                                className="  h-20  md:h-[260px] md:w-[240px] bg-gray-300 rounded-2xl flex flex-col items-center p-3 gap-8 animate-pulse"
                             >
                                 <div className="h-[140px] w-[220px] bg-gray-400 rounded-2xl"></div>
                                 <div className="h-[32px] w-[200px] bg-gray-400 rounded-2xl"></div>
